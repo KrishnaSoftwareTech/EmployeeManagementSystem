@@ -1,0 +1,33 @@
+Employee
+#id
+EMP_id
+Name
+Manager- id
+Designation 
+phone
+address
+date of joining
+DOB
+Bank Detials
+Personal Details
+Education Details
+PF detials
+Pan 
+Uan
+Adhar 
+work exp
+Medical details
+Working For 
+---
+Employee Table - All Details
+Manager Table  - ID of Employee , Sap id 
+Branch Table- ID , LocationName ,state, id of employees , Based On branchid = Head of branch 
+Bank Details Table - 
+Personal Details Table -
+Education details Table -
+PF details Table -
+Work Exp Table  - 
+Medical details Table -
+Compensation Details Table -
+
+New EMP -  
