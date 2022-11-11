@@ -1,0 +1,48 @@
+Employee Collections
+
+ 1.EmployeeController 
+   GET
+   {
+     http://localhost:8080/api/service/Employees/
+     http://localhost:8080/api/service/Employees/{id}
+
+   }
+   POST
+   {
+    http://localhost:8080/api/service/Employees/
+    http://localhost:8080/api/service/Employees/list 
+   }
+   PUT
+   {
+       http://localhost:8080/api/service/Employees/{id}
+   }
+   DELETE
+   {
+       http://localhost:8080/api/service/Employees/{id}
+       http://localhost:8080/api/service/Employees/
+   }
+   
+   2.EmployeeInfoController
+   GET
+   {
+       http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/EducationDetails
+       http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/PersonalDetails
+       http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/BankDetails
+       http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/prevoiusDetails
+       http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/
+       http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/
+       http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/
+       
+   }
+   POST
+   {
+
+   }
+   PUT
+   {
+
+   }
+   DELETE
+   {
+
+   }

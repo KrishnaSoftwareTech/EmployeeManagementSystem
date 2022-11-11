@@ -6,11 +6,17 @@ import java.util.List;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 @Embeddable
-
+@Table
+@Entity
 public class EmpPersonalDetails {
 
+	@Id
+	private Long sapId;
 	private String firstName;
 	private String LastName;
 	private String MiddleName;
@@ -22,6 +28,7 @@ public class EmpPersonalDetails {
 	private String Citizen;
 	private Date DateOfBirth;
 	@OneToOne(targetEntity=FamilyDetails.class, fetch=FetchType.EAGER)
+//	@JoinTable
 	private List<FamilyDetails> FamilyDetails;
 	/**
 	 * @param firstName
