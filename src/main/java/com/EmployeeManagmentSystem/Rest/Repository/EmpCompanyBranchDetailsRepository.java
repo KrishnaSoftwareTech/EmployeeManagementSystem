@@ -1,14 +1,12 @@
 package com.EmployeeManagmentSystem.Rest.Repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import com.EmployeeManagmentSystem.Rest.Model.EmpBankDetails;
-import com.EmployeeManagmentSystem.Rest.Model.EmpCompanyBranchDetaila;
+import com.EmployeeManagmentSystem.Rest.Model.EmpCompanyBranchDetails;
 
 /**
  * @author krishnakumar
  *
  */
-public interface EmpCompanyBranchDetailsRepository extends JpaRepository<EmpCompanyBranchDetaila, Long> {
+public interface EmpCompanyBranchDetailsRepository extends JpaRepository<EmpCompanyBranchDetails, Long> {
 
 }

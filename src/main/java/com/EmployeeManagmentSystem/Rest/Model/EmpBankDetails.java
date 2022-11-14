@@ -12,7 +12,7 @@ public class EmpBankDetails {
 
 	@Id
 	private Long SapId;
-	private  Long   BankAccountNumber;
+	private  Long  BankAccountNumber;
 	private String BankName;
 	private String BankBranch;
 	private String BankBranchAddress;
