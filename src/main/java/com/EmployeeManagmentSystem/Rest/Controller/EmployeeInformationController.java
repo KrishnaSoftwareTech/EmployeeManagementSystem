@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.EmployeeManagmentSystem.Rest.Model.EmpBankDetails;
+import com.EmployeeManagmentSystem.Rest.Model.EmpCompanyBranchDetails;
 import com.EmployeeManagmentSystem.Rest.ServiceInterface.BankDetailsInterface;
+import com.EmployeeManagmentSystem.Rest.ServiceInterface.CompanyBranchInterface;
 
 /**
  * @author krishnakumar
@@ -26,6 +28,9 @@ public class EmployeeInformationController {
 
 	@Autowired
 	private BankDetailsInterface bankDetails;
+	
+	@Autowired
+	private CompanyBranchInterface departmentBranch;
 	
 	@GetMapping("/Employees/{sapid}/EmployeeInfo/BankDetails")
 	 public Optional<EmpBankDetails> getEmployeeBankDetails(@PathVariable Long sapid) {
@@ -53,4 +58,11 @@ public class EmployeeInformationController {
 		return ResponseEntity.ok().header("Bank Details Removed for Employee" ,sapId.toString()).body(sapId.toString()) ;
 	}
 	
+	// CompanyBranchInterface -- department 
+	
+	@GetMapping("/Employees/{sapid}/EmployeeInfo/branchDetails")
+	public Optional<EmpCompanyBranchDetails> getBranchDetails(@PathVariable Long sapid) {
+		return departmentBranch.getBranchDetails(sapid);
+		
+	}
 }
