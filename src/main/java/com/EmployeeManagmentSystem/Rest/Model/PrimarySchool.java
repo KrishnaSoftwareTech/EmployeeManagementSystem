@@ -2,18 +2,22 @@ package com.EmployeeManagmentSystem.Rest.Model;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Embeddable
 @Entity
 public class PrimarySchool {
 
 	@Id
-	private Long Collegeid;
+	private Long School_Id;
 	private String SchoolBoard;
 	private String SchoolUniversityName;
 	private String Country;
 	private int percentage;
+	@OneToOne(targetEntity=EducationDetails.class,  fetch=FetchType.EAGER)
+	private EducationDetails sapID; 
 	
 	
 	public PrimarySchool() {

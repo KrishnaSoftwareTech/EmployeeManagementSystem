@@ -2,7 +2,9 @@ package com.EmployeeManagmentSystem.Rest.Model;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * @author krishnakumar
@@ -13,11 +15,13 @@ import javax.persistence.Id;
 public class Intermediate {
 
 	@Id
-	private Long id;
+	private Long CollegeId;
 	private String InterBoard;
 	private String InterUniversityName;
 	private String Country;
 	private int InterPercentage;
+	@OneToOne(targetEntity=EducationDetails.class,  fetch=FetchType.EAGER)
+	private EducationDetails sapID; 
 	/**
 	 * @param interBoard
 	 * @param interUniversityName

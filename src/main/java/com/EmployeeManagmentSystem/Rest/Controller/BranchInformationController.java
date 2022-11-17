@@ -18,7 +18,7 @@ import com.EmployeeManagmentSystem.Rest.ServiceInterface.CompanyBranchInterface;
 
 /**
  * @author krishnakumar
- *
+ * @Url /api/service/Employees/{sapId}/EmployeeInfo/branchDetails
  */
 @RestController
 @RequestMapping("api/service/")

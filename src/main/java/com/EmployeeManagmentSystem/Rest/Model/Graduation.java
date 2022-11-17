@@ -2,7 +2,9 @@ package com.EmployeeManagmentSystem.Rest.Model;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  * @author krishnakumar
@@ -13,12 +15,13 @@ import javax.persistence.Id;
 public class Graduation {
 
 	@Id
-	private Long id;
+	private Long geaduation_id;
 	private String GraduationBoard;
 	private String GraduationUniversityName;
 	private String Country;
 	private int Graduationpercentage;
-	
+	@OneToOne(targetEntity=EducationDetails.class,  fetch=FetchType.EAGER)
+	private EducationDetails sapID; 
 	public Graduation(){
 		}
 
