@@ -36,8 +36,8 @@ public class EducationDetailsController {
 	}
 	@PostMapping("/Employees/{sapId}/EmployeeInfo/EducationDetails")
 	public EducationDetails addEducationDetails(@PathVariable Long sapId,@RequestBody EducationDetails educationDetails) {
-		educationInfo.addEmployeeEducationinfo(sapId,educationDetails);
-		return null;
+		EducationDetails addEmployeeEducationinfo = educationInfo.addEmployeeEducationinfo(sapId,educationDetails);
+		return addEmployeeEducationinfo;
 	}
 	@PutMapping("/Employees/{sapId}/EmployeeInfo/EducationDetails")
 	public EducationDetails updateEducationDetails(@PathVariable Long sapId,@RequestBody EducationDetails educationDetails) {
