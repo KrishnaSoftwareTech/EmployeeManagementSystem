@@ -24,13 +24,10 @@ import com.EmployeeManagmentSystem.Rest.ServiceInterface.CompanyBranchInterface;
  */
 @RestController
 @RequestMapping("api/service/")
-public class EmployeeInformationController {
+public class BankInformationController {
 
 	@Autowired
 	private BankDetailsInterface bankDetails;
-	
-	@Autowired
-	private CompanyBranchInterface departmentBranch;
 	
 	@GetMapping("/Employees/{sapid}/EmployeeInfo/BankDetails")
 	 public Optional<EmpBankDetails> getEmployeeBankDetails(@PathVariable Long sapid) {
@@ -58,11 +55,4 @@ public class EmployeeInformationController {
 		return ResponseEntity.ok().header("Bank Details Removed for Employee" ,sapId.toString()).body(sapId.toString()) ;
 	}
 	
-	// CompanyBranchInterface -- department 
-	
-	@GetMapping("/Employees/{sapid}/EmployeeInfo/branchDetails")
-	public Optional<EmpCompanyBranchDetails> getBranchDetails(@PathVariable Long sapid) {
-		return departmentBranch.getBranchDetails(sapid);
-		
-	}
 }

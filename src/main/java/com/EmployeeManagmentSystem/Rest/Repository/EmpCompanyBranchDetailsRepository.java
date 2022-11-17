@@ -8,5 +8,6 @@ import com.EmployeeManagmentSystem.Rest.Model.EmpCompanyBranchDetails;
  *
  */
 public interface EmpCompanyBranchDetailsRepository extends JpaRepository<EmpCompanyBranchDetails, Long> {
-
+  
+	EmpCompanyBranchDetails findBySapid(Long sapid);
 }

@@ -3,21 +3,27 @@ package com.EmployeeManagmentSystem.Rest.Model;
 import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Embeddable
+@Table(name="BranchDetails")
 public class EmpCompanyBranchDetails {
 
-	@javax.persistence.Id
+	@Id
+//	@GeneratedValue
 	private Long sapid;
 	private String BranchName;
 	private String BranchAddress;
-	@ManyToOne(targetEntity=Employee.class, cascade = CascadeType.ALL)
-	@JoinColumn(name="HeadOfDepartment_id",referencedColumnName = "sapID")
+//	@ManyToOne(targetEntity=Employee.class, cascade = CascadeType.MERGE ,fetch=FetchType.LAZY)
+//	@JoinColumn(name="HeadOfDepartment_id",referencedColumnName = "sapID")
 	private Long  BranchHead_Id;
 	
 	public EmpCompanyBranchDetails() {
@@ -52,13 +58,21 @@ public class EmpCompanyBranchDetails {
 		BranchAddress = branchAddress;
 	}
 
-	public Long getBranchHead() {
+	public Long getSapid() {
+		return sapid;
+	}
+
+	public void setSapid(Long sapid) {
+		this.sapid = sapid;
+	}
+
+	public Long gethead_of_department_id() {
 		return BranchHead_Id;
 	}
 
-	public void setBranchHead(Long branchHead) {
-		BranchHead_Id = branchHead;
+	public void sethead_of_department_id(Long branchHead_Id) {
+		BranchHead_Id = branchHead_Id;
 	}
-	
+
 	
 }
