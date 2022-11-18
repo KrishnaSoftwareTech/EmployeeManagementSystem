@@ -12,6 +12,9 @@ import com.EmployeeManagmentSystem.Rest.Exception.ResourceNotFoundException;
 import com.EmployeeManagmentSystem.Rest.Model.EducationDetails;
 import com.EmployeeManagmentSystem.Rest.Repository.EmpEducationDetailsRepository;
 import com.EmployeeManagmentSystem.Rest.ServiceInterface.EducationDetailsInterface;
+import com.EmployeeManagmentSystem.Rest.ServiceInterface.GraduationDetailsInterface;
+import com.EmployeeManagmentSystem.Rest.ServiceInterface.IntermediateDetailsInterface;
+import com.EmployeeManagmentSystem.Rest.ServiceInterface.PrimarySchoolDetailsInterf;
 
 /**
  * @author krishnakumar
@@ -24,7 +27,12 @@ public class EducationDetailsService implements EducationDetailsInterface {
 	
 	@Autowired
 	private EmpEducationDetailsRepository educationRepo;
-	
+	@Autowired
+	private GraduationDetailsInterface graduationInfoService;
+	@Autowired
+	private IntermediateDetailsInterface intermediateInfoService;
+	@Autowired
+	private PrimarySchoolDetailsInterf school_InfoService;
 	@Autowired
 	private UtilityService util;
 
@@ -59,13 +67,20 @@ public class EducationDetailsService implements EducationDetailsInterface {
 	 **/
 	@Override
 	public EducationDetails addEmployeeEducationinfo(Long sapId, EducationDetails educationInfo) {
+		Long empSapId = sapId;
+		EducationDetails empEducationInfo = educationInfo;
+		empEducationInfo.setSapId(empSapId);
 		if(util.checkEmployeeBySapId(sapId)) {
 			try {
-			educationInfo.setSapId(sapId);
-			EducationDetails addEducationInfo = educationRepo.save(educationInfo);
+			//Add school , inter ,and graducaiton details 
+			 addSapAsNull(educationInfo);
+			//Add Education Info 
+				 addEducationInfoAsNull(empSapId, educationInfo);
+		  //Update Education DEtails
+			 updateEducationInfo(sapId, empEducationInfo);
+		//EducationDetails addEducationInfo = educationRepo.save(educationInfo);
 			logs.info("Employee Education Details Added {} ", educationInfo);
 			}catch (InternalServerException exception) {
-				String message = exception.getMessage();
 				logs.error("An exception has occured while processing the Request , Unable to addEducatioin Details for{} " +sapId);
 				throw new InternalServerException("An exception has occured while processing the Request , Unable to addEducatioin Details for " +sapId);
 			}
@@ -77,8 +92,40 @@ public class EducationDetailsService implements EducationDetailsInterface {
 		return null;
 	}
 
+	private void addSapAsNull(EducationDetails educationInfo) {
+		educationInfo.setSapId(null);
+		Long school_Id = educationInfo.getSchool().getSchool_Id();
+		school_InfoService.addSchoolInformation(educationInfo.getSchool());
+		intermediateInfoService.addIntermediateInfo(educationInfo.getIntermedite());
+		graduationInfoService.addGraduationInfo(educationInfo.getGraduation());
+	}
+
+	private void addEducationInfoAsNull(Long sapId, EducationDetails educationInfo) {
+		educationInfo.setSapId(sapId);
+		educationInfo.setGraduation(null);
+		educationInfo.setIntermedite(null);
+		educationInfo.setSchool(null);
+		educationRepo.save(educationInfo);
+	}
+
 	@Override
 	public void updateEducationInfo(Long sapId, EducationDetails educationDetails) {
+		if(util.checkEmployeeBySapId(sapId)) {
+			try {
+				EducationDetails employeeEducationInfo = educationRepo.findById(sapId)
+						.orElseThrow(() -> new ResourceNotFoundException("Education Details NotFound for " +sapId));			
+				//set
+				employeeEducationInfo.setGraduation(educationDetails.getGraduation());
+				employeeEducationInfo.setIntermedite(educationDetails.getIntermedite());
+				employeeEducationInfo.setSchool(educationDetails.getSchool());
+			}catch (InternalServerException internalError) {
+				throw new InternalServerException("Unable to Add Education Info2"+ sapId);
+			}
+		}
+		else {
+			logs.error("Employee Not Found {}",sapId);
+			throw new ResourceNotFoundException("Employee Not Found "+sapId);
+		}
 	}
 
 	@Override

@@ -30,9 +30,9 @@ public class EducationDetailsController {
 	private EducationDetailsInterface educationInfo;
 
 	@GetMapping("/Employees/{sapId}/EmployeeInfo/EducationDetails")
-	public Optional<EducationDetails> getEducationDetails(@PathVariable Long sapId) throws InternalServerException {
+	public EducationDetails getEducationDetails(@PathVariable Long sapId) throws InternalServerException {
 		Optional<EducationDetails> employeeEducationInfo = educationInfo.getEmployeeEducationInfo(sapId);
-		return employeeEducationInfo;
+		return employeeEducationInfo.get();
 	}
 	@PostMapping("/Employees/{sapId}/EmployeeInfo/EducationDetails")
 	public EducationDetails addEducationDetails(@PathVariable Long sapId,@RequestBody EducationDetails educationDetails) {

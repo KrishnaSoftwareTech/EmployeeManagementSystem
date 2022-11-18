@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Embeddable
 @Entity
 @Table(name="EducationDetails")
@@ -18,11 +20,14 @@ public class EducationDetails {
 
 	@Id
 	private Long sapId;
-	 @OneToOne(targetEntity=PrimarySchool.class,  fetch=FetchType.EAGER)
+    @JsonManagedReference
+    @OneToOne(targetEntity=PrimarySchool.class,  fetch=FetchType.EAGER)
 	 private PrimarySchool School;
-     @OneToOne(targetEntity=Intermediate.class, fetch=FetchType.EAGER)
+    @JsonManagedReference
+    @OneToOne(targetEntity=Intermediate.class, fetch=FetchType.EAGER)
 	  private Intermediate intermedite;
-     @OneToOne(targetEntity=Graduation.class, fetch=FetchType.EAGER)
+    @JsonManagedReference
+    @OneToOne(targetEntity=Graduation.class, fetch=FetchType.EAGER)
 	 private Graduation graduation;
 		/**
 		 * @param sapId
@@ -38,6 +43,7 @@ public class EducationDetails {
 			this.intermedite = intermedite;
 			this.graduation = graduation;
 		}
+
 	public EducationDetails() {
 		super();
 	}
@@ -67,6 +73,12 @@ public class EducationDetails {
 		this.graduation = graduation;
 	}
 //	public void addEmployeeEducationinfo(Long sapId2, EducationDetails educationDetails) {
+//	}
+//	public void setGraduation(Long geaduation_id) {
+//	}
+//	public void setIntermedite(Long collegeId) {
+//	}
+//	public void setSchool(Long school_Id) {
 //	}
 	  
 }

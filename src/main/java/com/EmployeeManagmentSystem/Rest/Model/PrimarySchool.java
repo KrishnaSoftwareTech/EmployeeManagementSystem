@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Embeddable
 @Entity
 public class PrimarySchool {
@@ -17,9 +19,46 @@ public class PrimarySchool {
 	private String Country;
 	private int percentage;
 	@OneToOne(targetEntity=EducationDetails.class,  fetch=FetchType.EAGER)
+	@JsonBackReference 
 	private EducationDetails sapID; 
 	
+//    "school": {
+//    "percentage": 72,
+//    "schoolBoard": "SSC-AP",
+//    "schoolUniversityName": "Sri Ushodaya E/M School",
+//    "country": "India"
+//}
 	
+	/**
+	 * @param school_Id
+	 * @param schoolBoard
+	 * @param schoolUniversityName
+	 * @param country
+	 * @param percentage
+	 * @param sapID
+	 */
+	public PrimarySchool(Long school_Id, String schoolBoard, String schoolUniversityName, String country,
+			int percentage, EducationDetails sapID) {
+		super();
+		School_Id = school_Id;
+		SchoolBoard = schoolBoard;
+		SchoolUniversityName = schoolUniversityName;
+		Country = country;
+		this.percentage = percentage;
+		this.sapID = sapID;
+	}
+	public Long getSchool_Id() {
+		return School_Id;
+	}
+	public void setSchool_Id(Long school_Id) {
+		School_Id = school_Id;
+	}
+	public EducationDetails getSapID() {
+		return sapID;
+	}
+	public void setSapID(EducationDetails sapID) {
+		this.sapID = sapID;
+	}
 	public PrimarySchool() {
 		
 	}
@@ -29,13 +68,13 @@ public class PrimarySchool {
 	 * @param country
 	 * @param percentage
 	 */
-	public PrimarySchool(String schoolBoard, String schoolUniversityName, String country, int percentage) {
-		super();
-		SchoolBoard = schoolBoard;
-		SchoolUniversityName = schoolUniversityName;
-		Country = country;
-		this.percentage = percentage;
-	}
+//	public PrimarySchool(String schoolBoard, String schoolUniversityName, String country, int percentage) {
+//		super();
+//		SchoolBoard = schoolBoard;
+//		SchoolUniversityName = schoolUniversityName;
+//		Country = country;
+//		this.percentage = percentage;
+//	}
 
 
 	public String getSchoolBoard() {
