@@ -1,6 +1,9 @@
 package com.EmployeeManagmentSystem.Rest.Service;
 
+import java.util.Collection;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,7 +46,6 @@ public class EducationDetailsService implements EducationDetailsInterface {
 			try {
 			    getInfo = educationRepo.findById(sapId);
 			    boolean present = getInfo.isPresent();
-			  //  getInfo.ifPresentOrElse(null, null);
 			    if(!present) {
 			    	logs.error("Education DEtails Not Found For Employee : {} "+sapId);
 			    	throw new ResourceNotFoundException("Education Details Not Present "+sapId);
@@ -95,6 +97,8 @@ public class EducationDetailsService implements EducationDetailsInterface {
 	private void addSapAsNull(EducationDetails educationInfo) {
 		educationInfo.setSapId(null);
 		Long school_Id = educationInfo.getSchool().getSchool_Id();
+//		Set<PrimarySchoolDetails> scl=new HashSet<PrimarySchoolDetails>();
+//		scl.addAll((Collection<? extends PrimarySchoolDetails>) educationInfo.getSchool());
 		school_InfoService.addSchoolInformation(educationInfo.getSchool());
 		intermediateInfoService.addIntermediateInfo(educationInfo.getIntermedite());
 		graduationInfoService.addGraduationInfo(educationInfo.getGraduation());
