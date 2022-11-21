@@ -1,5 +1,6 @@
 package com.EmployeeManagmentSystem.Rest.Service;
 
+import java.lang.module.ResolutionException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Optional;
@@ -61,79 +62,59 @@ public class EducationDetailsService implements EducationDetailsInterface {
 		}
 		return getInfo;
 	}
-
-	/**@ValidationSteps 
-	 * first add educationDetails -> as "sapId"="123243" , "graduation_id" =null,"Intermediate"=null ,"School_Id"=null ; 
-	 * Second add Graduation_Details ,Intermediate_Details, School_details 
-	 * Third update educationDetails as -> sap + along with graduation id , intermediate id , school id
-	 **/
 	@Override
 	public EducationDetails addEmployeeEducationinfo(Long sapId, EducationDetails educationInfo) {
 		Long empSapId = sapId;
-		EducationDetails empEducationInfo = educationInfo;
-		empEducationInfo.setSapId(empSapId);
+		educationInfo.setSapId(empSapId);
 		if(util.checkEmployeeBySapId(sapId)) {
 			try {
-			//Add school , inter ,and graducaiton details 
-			 addSapAsNull(educationInfo);
-			//Add Education Info 
-				 addEducationInfoAsNull(empSapId, educationInfo);
-		  //Update Education DEtails
-			 updateEducationInfo(sapId, empEducationInfo);
-		//EducationDetails addEducationInfo = educationRepo.save(educationInfo);
+				educationRepo.save(educationInfo);
 			logs.info("Employee Education Details Added {} ", educationInfo);
 			}catch (InternalServerException exception) {
 				logs.error("An exception has occured while processing the Request , Unable to addEducatioin Details for{} " +sapId);
 				throw new InternalServerException("An exception has occured while processing the Request , Unable to addEducatioin Details for " +sapId);
 			}
-			
 		}else {
 			logs.error("Employee Not Found {}",sapId);
 			throw new ResourceNotFoundException("Employee Not Found");
 		}
-		return null;
+		return educationInfo;
 	}
-
-	private void addSapAsNull(EducationDetails educationInfo) {
-		educationInfo.setSapId(null);
-		Long school_Id = educationInfo.getSchool().getSchool_Id();
-//		Set<PrimarySchoolDetails> scl=new HashSet<PrimarySchoolDetails>();
-//		scl.addAll((Collection<? extends PrimarySchoolDetails>) educationInfo.getSchool());
-		school_InfoService.addSchoolInformation(educationInfo.getSchool());
-		intermediateInfoService.addIntermediateInfo(educationInfo.getIntermedite());
-		graduationInfoService.addGraduationInfo(educationInfo.getGraduation());
-	}
-
-	private void addEducationInfoAsNull(Long sapId, EducationDetails educationInfo) {
-		educationInfo.setSapId(sapId);
-		educationInfo.setGraduation(null);
-		educationInfo.setIntermedite(null);
-		educationInfo.setSchool(null);
-		educationRepo.save(educationInfo);
-	}
-
 	@Override
-	public void updateEducationInfo(Long sapId, EducationDetails educationDetails) {
+	public EducationDetails updateEducationInfo(Long sapId, EducationDetails educationDetails) {
 		if(util.checkEmployeeBySapId(sapId)) {
 			try {
 				EducationDetails employeeEducationInfo = educationRepo.findById(sapId)
 						.orElseThrow(() -> new ResourceNotFoundException("Education Details NotFound for " +sapId));			
 				//set
+				employeeEducationInfo.setSapId(sapId);
 				employeeEducationInfo.setGraduation(educationDetails.getGraduation());
 				employeeEducationInfo.setIntermedite(educationDetails.getIntermedite());
 				employeeEducationInfo.setSchool(educationDetails.getSchool());
+				educationDetails.setSapId(sapId);
+				educationRepo.save(educationDetails);
 			}catch (InternalServerException internalError) {
-				throw new InternalServerException("Unable to Add Education Info2"+ sapId);
+				throw new InternalServerException("Unable to Add Education Info"+ sapId);
 			}
 		}
 		else {
 			logs.error("Employee Not Found {}",sapId);
 			throw new ResourceNotFoundException("Employee Not Found "+sapId);
 		}
+		return educationDetails;
 	}
 
 	@Override
 	public void deleteEducationInfo(Long sapId) {
+//		if(!util.checkEmployeeBySapId(sapId)) {
+//			logs.error("Employee Not Found {}",sapId);
+//			throw new ResolutionException("Employee Not Found " + sapId);
+//		}
+		try {
+		educationRepo.deleteById(sapId);
+		}catch (InternalServerException exception) {
+			throw new InternalServerException("Unable to Delete Education Information "+ sapId);
+		}
 	}
 
 }

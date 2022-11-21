@@ -2,6 +2,7 @@ package com.EmployeeManagmentSystem.Rest.Model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -21,13 +22,13 @@ public class EducationDetails {
 	@Id
 	private Long sapId;
     @JsonManagedReference
-    @OneToOne(targetEntity=PrimarySchool.class,  fetch=FetchType.EAGER)
+    @OneToOne(targetEntity=PrimarySchool.class,  fetch=FetchType.EAGER, cascade = {CascadeType.ALL})
 	 private PrimarySchool School;
     @JsonManagedReference
-    @OneToOne(targetEntity=Intermediate.class, fetch=FetchType.EAGER)
+    @OneToOne(targetEntity=Intermediate.class, fetch=FetchType.EAGER,cascade = {CascadeType.ALL})
 	  private Intermediate intermedite;
     @JsonManagedReference
-    @OneToOne(targetEntity=Graduation.class, fetch=FetchType.EAGER)
+    @OneToOne(targetEntity=Graduation.class, fetch=FetchType.EAGER,cascade = {CascadeType.ALL})
 	 private Graduation graduation;
 		/**
 		 * @param sapId

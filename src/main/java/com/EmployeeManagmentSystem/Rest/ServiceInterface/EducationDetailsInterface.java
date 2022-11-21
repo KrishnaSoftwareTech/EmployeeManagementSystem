@@ -13,6 +13,6 @@ public interface EducationDetailsInterface {
 
 	public Optional<EducationDetails> getEmployeeEducationInfo(Long sapId) throws InternalServerException;
 	public EducationDetails addEmployeeEducationinfo(Long sapId,EducationDetails educationInfo);
-	public void updateEducationInfo(Long sapId, EducationDetails educationDetails);
+	public EducationDetails updateEducationInfo(Long sapId, EducationDetails educationDetails);
 	public void deleteEducationInfo(Long sapId);
 }

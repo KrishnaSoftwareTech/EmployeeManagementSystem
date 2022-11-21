@@ -3,6 +3,7 @@ package com.EmployeeManagmentSystem.Rest.Model;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
@@ -17,6 +18,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Graduation {
 
 	@Id
+//	@GeneratedValue
 	private Long geaduation_id;
 	private String GraduationBoard;
 	private String GraduationUniversityName;
