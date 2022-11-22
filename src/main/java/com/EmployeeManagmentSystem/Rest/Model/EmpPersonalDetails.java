@@ -3,13 +3,20 @@ package com.EmployeeManagmentSystem.Rest.Model;
 import java.sql.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonProperty;
 @Embeddable
 @Table
 @Entity
@@ -27,8 +34,9 @@ public class EmpPersonalDetails {
 	private String StateOfBirth;
 	private String Citizen;
 	private Date DateOfBirth;
-	@OneToOne(targetEntity=FamilyDetails.class, fetch=FetchType.EAGER)
-//	@JoinTable
+	@JsonManagedReference
+	@OneToOne(targetEntity=FamilyDetails.class, fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@JsonProperty("FamilyDetails")
 	private List<FamilyDetails> FamilyDetails;
 	/**
 	 * @param firstName
@@ -57,7 +65,13 @@ public class EmpPersonalDetails {
 		StateOfBirth = stateOfBirth;
 		Citizen = citizen;
 		DateOfBirth = dateOfBirth;
-		FamilyDetails = familyDetails;
+//		FamilyDetails = familyDetails;
+	}
+	/**
+	 * 
+	 */
+	public EmpPersonalDetails() {
+		super();
 	}
 	public String getFirstName() {
 		return firstName;
@@ -119,9 +133,17 @@ public class EmpPersonalDetails {
 	public void setDateOfBirth(Date dateOfBirth) {
 		DateOfBirth = dateOfBirth;
 	}
+	@JsonIgnore
 	public List<FamilyDetails> getFamilyDetails() {
 		return FamilyDetails;
 	}
+	public Long getSapId() {
+		return sapId;
+	}
+	public void setSapId(Long sapId) {
+		this.sapId = sapId;
+	}
+	//@JsonIgnore
 	public void setFamilyDetails(List<FamilyDetails> familyDetails) {
 		FamilyDetails = familyDetails;
 	}
