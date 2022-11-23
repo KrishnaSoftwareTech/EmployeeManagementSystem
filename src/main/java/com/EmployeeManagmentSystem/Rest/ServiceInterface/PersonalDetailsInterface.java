@@ -10,8 +10,12 @@ import com.EmployeeManagmentSystem.Rest.Model.EmpPersonalDetails;
  */
 public interface PersonalDetailsInterface {
 
-	public Optional<EmpPersonalDetails> getPersonalDetails(Long sapid);
+	public EmpPersonalDetails getPersonalDetails(Long sapid);
 
 	public EmpPersonalDetails addPersonalDetails(EmpPersonalDetails personalDetails, Long sapid);
+
+	public EmpPersonalDetails updatePersonalInfo(EmpPersonalDetails personalDetails, Long sapid);
+
+	public void deletePersonalInfoById(Long sapid);
 
 }

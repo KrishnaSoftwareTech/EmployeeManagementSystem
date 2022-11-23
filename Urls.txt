@@ -1,0 +1,39 @@
+1.EmployeeController 
+   GET
+   {
+     http://localhost:8080/api/service/Employees/
+     http://localhost:8080/api/service/Employees/{id}
+
+   }
+   POST
+   {
+    http://localhost:8080/api/service/Employees/
+    http://localhost:8080/api/service/Employees/list 
+   }
+   PUT
+   {
+       http://localhost:8080/api/service/Employees/{id}
+   }
+   DELETE
+   {
+       http://localhost:8080/api/service/Employees/{id}
+       http://localhost:8080/api/service/Employees/
+   }
+ 2.BranchDetails
+ 	GET - POST - PUT -DELETE 
+ 	{
+    http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/branchDetails
+ 	}
+ 3.EducationDetails
+    GET - POST - PUT -DELETE 
+    {
+ 	http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/EducationDetails
+ 	}
+ 4.PersonalDetails
+    http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/personalDetails 
+ 5.BankDetails
+   http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/BankDetails
+ 	
+ 	
+ 	
+ 	

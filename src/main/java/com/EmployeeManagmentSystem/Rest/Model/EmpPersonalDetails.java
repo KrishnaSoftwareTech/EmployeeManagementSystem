@@ -35,7 +35,7 @@ public class EmpPersonalDetails {
 	private String Citizen;
 	private Date DateOfBirth;
 	@JsonManagedReference
-	@OneToOne(targetEntity=FamilyDetails.class, fetch=FetchType.EAGER,cascade = CascadeType.ALL)
+	@OneToMany(targetEntity=FamilyDetails.class, fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	@JsonProperty("FamilyDetails")
 	private List<FamilyDetails> FamilyDetails;
 	/**
