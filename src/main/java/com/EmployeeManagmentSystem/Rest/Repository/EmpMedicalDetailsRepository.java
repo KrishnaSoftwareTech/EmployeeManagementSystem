@@ -10,5 +10,6 @@ import com.EmployeeManagmentSystem.Rest.Model.EmpMedicalDetails;
  *
  */
 public interface EmpMedicalDetailsRepository extends JpaRepository<EmpMedicalDetails, Long> {
+	public EmpMedicalDetails findBySapId(Long sapId);
 
 }

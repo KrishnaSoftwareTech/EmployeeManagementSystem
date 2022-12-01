@@ -20,54 +20,72 @@ public class MedicalDependents{
 	private int DependentAge;
 	
 	@ManyToOne(targetEntity=EmpMedicalDetails.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	 @JsonManagedReference 
-	@JoinColumn(name="Employee_sapId")
+	 @JsonBackReference
+	@JoinColumn
 	private EmpMedicalDetails empMedicalDetails;
 	
+	
+
 	/**
+	 * @param id
 	 * @param dependentName
 	 * @param dependentRelation
 	 * @param dependentAge
+	 * @param empMedicalDetails
 	 */
-	public MedicalDependents(String dependentName, String dependentRelation, int dependentAge) {
+	public MedicalDependents(Long id, String dependentName, String dependentRelation, int dependentAge,
+			EmpMedicalDetails empMedicalDetails) {
 		super();
+		this.id = id;
 		DependentName = dependentName;
 		DependentRelation = dependentRelation;
 		DependentAge = dependentAge;
+		this.empMedicalDetails = empMedicalDetails;
 	}
+
 	public MedicalDependents() {
-		
-	}
-	public String getDependentName() {
-		return DependentName;
-	}
-	public void setDependentName(String dependentName) {
-		DependentName = dependentName;
-	}
-	public String getDependentRelation() {
-		return DependentRelation;
+		super();
 	}
 	public Long getId() {
 		return id;
 	}
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public EmpMedicalDetails getEmpMedicalDetails() {
-		return empMedicalDetails;
+
+	public String getDependentName() {
+		return DependentName;
 	}
-	@JsonIgnore
-	public void setEmpMedicalDetails(EmpMedicalDetails empMedicalDetails) {
-		this.empMedicalDetails = empMedicalDetails;
+
+	public void setDependentName(String dependentName) {
+		DependentName = dependentName;
 	}
+
+	public String getDependentRelation() {
+		return DependentRelation;
+	}
+
 	public void setDependentRelation(String dependentRelation) {
 		DependentRelation = dependentRelation;
 	}
+
 	public int getDependentAge() {
 		return DependentAge;
 	}
+
 	public void setDependentAge(int dependentAge) {
 		DependentAge = dependentAge;
 	}
+	//@JsonIgnore
+	public EmpMedicalDetails getEmpMedicalDetails() {
+		return empMedicalDetails;
+	}
+
+	public void setEmpMedicalDetails(EmpMedicalDetails empMedicalDetails) {
+		this.empMedicalDetails = empMedicalDetails;
+	}
+	
+	
 	
 }

@@ -3,10 +3,13 @@ package com.EmployeeManagmentSystem.Rest.Model;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -18,36 +21,36 @@ public class EmpMedicalDetails {
 
 	@Id 
 	 private Long sapId;
-	 @OneToOne(targetEntity=MedicalDependents.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
-	 @JsonBackReference
-	private List<MedicalDependents> MedicateDependents;
-	
-
-	public EmpMedicalDetails(List<MedicalDependents> medicateDependents,Long sapid) {
+	 @OneToMany(targetEntity=MedicalDependents.class, fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	 @JsonManagedReference 
+	 @Column(name="dependents")
+	private List<MedicalDependents> MedicalDependents;
+	//
+	 
+	/**
+	 * @param sapId
+	 * @param medicateDependents
+	 */
+	public EmpMedicalDetails(Long sapId, List<MedicalDependents> medicateDependents) {
 		super();
-	//	Id = id;
-		MedicateDependents = medicateDependents;
-		sapId=sapid;
+		this.sapId = sapId;
+		MedicalDependents = medicateDependents;
 	}
 	public EmpMedicalDetails() {
 		super();
 	}
-//	public Long getId() {
-//		return Id;
-//	}
 	public Long getSapId() {
 		return sapId;
 	}
 	public void setSapId(Long sapId) {
 		this.sapId = sapId;
 	}
-//	public void setId(Long id) {
-//		Id = id;
-//	}
+	@JsonIgnore
 	public List<MedicalDependents> getMedicateDependents() {
-		return MedicateDependents;
+		return MedicalDependents;
 	}
-	public void setMedicateDependents(List<MedicalDependents> medicateDependents) {
-		MedicateDependents = medicateDependents;
+	public void setMedicateDependents(List<MedicalDependents> medicalDependent) {
+		MedicalDependents = medicalDependent;
 	}
+	 
 }

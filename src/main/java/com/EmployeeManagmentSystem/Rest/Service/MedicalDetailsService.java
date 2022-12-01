@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.EmployeeManagmentSystem.Rest.Exception.InternalServerException;
 import com.EmployeeManagmentSystem.Rest.Exception.ResourceNotFoundException;
@@ -40,20 +41,20 @@ public class MedicalDetailsService implements MedicalDetailsInterface {
 	@Override
 	public EmpMedicalDetails getInfoByid(Long sapId) {
 		EmpMedicalDetails getInfo = medicalDetialsRepo.findById(sapId).orElseThrow(() -> 
-							new ResourceNotFoundException("Details Not Found For " +sapId));;
-			logs.info("  Details --> { }", getInfo);
+						new ResourceNotFoundException("Details Not Found For " +sapId));;
+		logs.info("  Details --> {}", getInfo);
 		return getInfo;
 	}
-
+/// Not in use 
 	@Override
 	public EmpMedicalDetails updateMedicalInformation(EmpMedicalDetails medicalDetails, Long sapId) {
-		 EmpMedicalDetails addMedicalInformation;
+		 EmpMedicalDetails addMedicalInformation = null;
 		medicalDetails.setSapId(sapId);
 		try {
 			   EmpMedicalDetails isDetailsFound = medicalDetialsRepo.findById(sapId)
 					   				.orElseThrow(() ->  new ResourceNotFoundException("Details Not Found For " +sapId));;
 			   isDetailsFound.setMedicateDependents(medicalDetails.getMedicateDependents());
-			    addMedicalInformation = addMedicalInformation(isDetailsFound, sapId);
+	//		    addMedicalInformation = addMedicalInformation(isDetailsFound, sapId);
 			    logs.info("Medical Details Updated SuccessFully for Employee { }" ,sapId);
 		}catch (InternalServerException e) {
 		logs.info("Error Occured While Updating Details --> { }", e.getMessage());
@@ -66,7 +67,7 @@ public class MedicalDetailsService implements MedicalDetailsInterface {
 	public void deleteMedicalInformation(Long sapId) {
 		try {
 			medicalDetialsRepo.deleteById(sapId);
-			logs.info("Medical Details Deleted SuccessFully for Employee { }" ,sapId);
+			logs.info("Medical Details Deleted SuccessFully for Employee {}" ,sapId);
 		}catch (InternalServerException e) {
 		  throw new InternalServerException("An Error Occured while deleting Information" +e.getMessage());
 		}
