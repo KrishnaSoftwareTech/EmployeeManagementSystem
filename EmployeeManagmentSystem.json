@@ -1,0 +1,585 @@
+{
+    "name":"EmployeeManagmentSystem -",
+    "item":[
+       {
+          "name":"EmployeeInformation",
+          "item":[
+             {
+                "name":"Branch - Department",
+                "item":[
+                   {
+                      "name":"Get Branch Details Of Employees",
+                      "id":"d2a1143d-4f11-4487-a1cc-0c18d7750184",
+                      "request":{
+                         "method":"GET",
+                         "header":[
+                            
+                         ],
+                         "url":"http://localhost:8080/api/service/Employees/59103830/EmployeeInfo/branchDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Add Branch Details",
+                      "id":"a4b159f0-3765-471f-ae60-b76a92717156",
+                      "request":{
+                         "method":"POST",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"branchName\": \"Hcl-Jigani\",\n    \"branchAddress\": \"Bangalore-Tower4(jigani)\",\n    \"head_of_department_id\": 8787871\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/51913559/EmployeeInfo/branchDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Update Branch Details",
+                      "id":"41fb4eeb-8785-43a9-97fc-bcd5834d8522",
+                      "request":{
+                         "method":"PUT",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"branchName\": \"Hcl-Jigani\",\n    \"branchAddress\": \"Bangalore-Tower1(jigani)\",\n    \"head_of_department_id\": 8787871\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/51913559/EmployeeInfo/branchDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Update Branch Details Copy",
+                      "id":"20e343fd-ae22-42a6-b0f8-fceb22ab929d",
+                      "request":{
+                         "method":"DELETE",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"branchName\": \"Hcl-Jigani\",\n    \"branchAddress\": \"Bangalore-Tower4(jigani)\",\n    \"head_of_department_id\": 8787871\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/59103830/EmployeeInfo/branchDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   }
+                ],
+                "id":"cff2e7e3-0468-4f66-ac96-d5b8aab086b2"
+             },
+             {
+                "name":"Medical Details - Dependent",
+                "item":[
+                   {
+                      "name":"Get Medical Details Of Employees",
+                      "id":"0bb583b0-4d69-464d-a393-e120a8d56247",
+                      "request":{
+                         "method":"GET",
+                         "header":[
+                            
+                         ],
+                         "url":"http://localhost:8080/api/service/Employees/500845/EmployeeInfo/medicalInfo"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Add Medical Details",
+                      "id":"f9d96d86-3058-42e9-8343-de10816aa8b9",
+                      "request":{
+                         "method":"POST",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"MedicalDependents\": [\n        {\n            \"id\": 12,\n            \"dependentName\": \"Ram\",\n            \"dependentRelation\": \"Father\",\n            \"dependentAge\": 45\n        },\n        {\n            \"id\": 13,\n            \"dependentName\": \"mamatha\",\n            \"dependentRelation\": \"mother\",\n            \"dependentAge\": 43\n        }\n    ]\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/500845/EmployeeInfo/medicalInfo"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Update Branch Details",
+                      "id":"859db247-00b1-4c47-a671-8caf6c327f59",
+                      "request":{
+                         "method":"PUT",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"sapId\": 500845,\n    \"MedicalDependents\": [\n        {\n            \"id\": 12,\n            \"dependentName\": \"Ram singam\",\n            \"dependentRelation\": \"Father\",\n            \"dependentAge\": 45\n        },\n        {\n            \"id\": 13,\n            \"dependentName\": \"mamatha s\",\n            \"dependentRelation\": \"mother\",\n            \"dependentAge\": 43\n        }\n    ]\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/500845/EmployeeInfo/medicalInfo"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Update Branch Details Copy",
+                      "id":"1ad48d31-c1fa-4ff3-a2d0-9f3271f088a8",
+                      "request":{
+                         "method":"DELETE",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"branchName\": \"Hcl-Jigani\",\n    \"branchAddress\": \"Bangalore-Tower4(jigani)\",\n    \"head_of_department_id\": 8787871\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/59103830/EmployeeInfo/branchDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   }
+                ],
+                "id":"19d9e3bb-45f8-421a-8370-a43cb2e042f5"
+             },
+             {
+                "name":"Bank Details of Employees",
+                "item":[
+                   {
+                      "name":"GetBankDetails",
+                      "id":"e110020e-9f50-4770-8dd7-5c1509cc4538",
+                      "request":{
+                         "method":"GET",
+                         "header":[
+                            
+                         ],
+                         "url":"http://localhost:8080/api/service/Employees/6374820/EmployeeInfo/BankDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Add Bank Details",
+                      "id":"0705002f-c501-4d18-a52e-2ccfd44c7e93",
+                      "request":{
+                         "method":"POST",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n        \"bankAccountNumber\": 9102810231930,\n        \"bankName\": \"my bank\",\n        \"bankBranch\": \"-AP\",\n        \"bankBranchAddress\": \"vijag-2ndCross Road city\"\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/31377112/EmployeeInfo/BankDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Delete BankDetails",
+                      "id":"ade81e92-a46b-453e-a5ea-665171986bd5",
+                      "request":{
+                         "method":"DELETE",
+                         "header":[
+                            
+                         ],
+                         "url":"http://localhost:8080/api/service/Employees/31377112/EmployeeInfo/BankDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Update BankDetails",
+                      "id":"b0aff09a-61d0-4cdc-9a16-c113fde18e4f",
+                      "request":{
+                         "method":"PUT",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n        \"bankAccountNumber\": 910281031930,\n        \"bankName\": \"RK-vally Bank\",\n        \"bankBranch\": \"idupulapaya-AP\",\n        \"bankBranchAddress\": \"idupulapaya-2ndCross Road \"\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/6374820/EmployeeInfo/BankDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   }
+                ],
+                "id":"6c5914ca-0819-4a12-a3f4-2a9ec40aa736"
+             },
+             {
+                "name":"Personal Details of Employee",
+                "item":[
+                   {
+                      "name":"GetPersonalDetails",
+                      "id":"91610fe1-65bb-404d-8adc-0859f7c5a978",
+                      "request":{
+                         "method":"GET",
+                         "header":[
+                            
+                         ],
+                         "url":{
+                            "raw":"http://localhost:8080/api/service/Employees/1348914/EmployeeInfo/personalDetails",
+                            "protocol":"http",
+                            "host":[
+                               "localhost"
+                            ],
+                            "port":"8080",
+                            "path":[
+                               "api",
+                               "service",
+                               "Employees",
+                               "1348914",
+                               "EmployeeInfo",
+                               "personalDetails"
+                            ],
+                            "query":[
+                               {
+                                  "key":"1348914",
+                                  "value":null,
+                                  "disabled":true
+                               },
+                               {
+                                  "key":"51913559",
+                                  "value":null,
+                                  "disabled":true
+                               },
+                               {
+                                  "key":"91839023",
+                                  "value":null,
+                                  "disabled":true
+                               }
+                            ]
+                         }
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Add PerosnalDetails Details",
+                      "id":"7c2b2746-bada-44c4-ba60-aa4cc4adb005",
+                      "request":{
+                         "method":"POST",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"firstName\": \"NSK\",\n    \"gender\": \"Male\",\n    \"citizen\": \"Indian\",\n    \"middleName\": \"New\",\n    \"maritualStatus\": \"Single\",\n    \"nationality\": \"Hindus\",\n    \"countryOfBirth\": \"India\",\n    \"stateOfBirth\": \"AP\",\n    \"dateOfBirth\": \"1998-07-31\",\n    \"lastName\": \"New\",\n    \"FamilyDetails\": [\n        {\n            \"id\": 91,\n            \"occupation\": \"SoftWare\",\n            \"relation\": \"Mother\",\n            \"name\": \"Mother New\"\n        },\n        {\n            \"id\": 90,\n            \"occupation\": \"SoftWare\",\n            \"relation\": \"Father\",\n            \"name\": \"Father New\"\n        }\n    ]\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/1823891/EmployeeInfo/personalDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Delete BankDetails",
+                      "id":"66b193d3-b5fc-4b95-a6ec-53f2615b3ae5",
+                      "request":{
+                         "method":"DELETE",
+                         "header":[
+                            
+                         ],
+                         "url":"http://localhost:8080/api/service/Employees/1348914/EmployeeInfo/personalDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Update BankDetails",
+                      "id":"a81dc78c-73ba-40c1-b168-7e9cd6b8f1ed",
+                      "request":{
+                         "method":"PUT",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"firstName\": \"Nare\",\n    \"lastName\": \"Sai\",\n    \"countryOfBirth\": \"India\",\n    \"dateOfBirth\": \"2004-07-18\",\n    \"middleName\": \"Kiran\",\n    \"maritualStatus\": \"Single\",\n    \"nationality\": \"Hindus\",\n    \"stateOfBirth\": \"AP\",\n    \"citizen\": \"Indian\",\n    \"gender\": \"Male\",\n    \"FamilyDetails\": [\n        {\n            \"id\": 91,\n            \"occupation\": \"SoftWare\",\n            \"relation\": \"Mother\",\n            \"name\": \"Mother New\"\n        },\n        {\n            \"id\": 90,\n            \"occupation\": \"SoftWare\",\n            \"relation\": \"Father\",\n            \"name\": \"Father New\"\n        }\n    ]\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/1823891/EmployeeInfo/personalDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   }
+                ],
+                "id":"a798dddc-121c-40d8-88ac-26110d90d1da"
+             },
+             {
+                "name":"EducationDetails of Employees",
+                "item":[
+                   {
+                      "name":"Get EducationDetails",
+                      "id":"1b558357-e577-4227-ad81-4981f4c1a33f",
+                      "protocolProfileBehavior":{
+                         "disableBodyPruning":true
+                      },
+                      "request":{
+                         "method":"GET",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":""
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/51913559/EmployeeInfo/EducationDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Get EducationDetails Copy",
+                      "id":"6bdbdffa-7e7c-4efe-a05b-946b869bcfd9",
+                      "request":{
+                         "method":"DELETE",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":""
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/1010101/EmployeeInfo/EducationDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Add EducationDetails",
+                      "id":"c1ef02e4-4223-47cc-b9d0-824429b95e19",
+                      "request":{
+                         "method":"POST",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"School\": {\n        \"percentage\": 72,\n        \"school_Id\": 400,\n        \"schoolBoard\": \"SSC-AP\",\n        \"schoolUniversityName\": \"Sri Ushodaya E/M School\",\n        \"country\": \"India\"\n    },\n    \"intermedite\": {\n        \"interBoard\": \"IE-AP\",\n        \"collegeId\": 401,\n        \"interUniversityName\": \"Sri Vivekananda Junior College\",\n        \"interPercentage\": 84,\n        \"country\": \"India\"\n    },\n    \"graduation\": {\n        \"geaduation_id\": 402,\n        \"graduationUniversityName\": \"St.Mark Educational Institutions\",\n        \"graduationBoard\": \"JNTU-Anantapur\",\n        \"graduationpercentage\": 78,\n        \"country\": \"India\"\n    }\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/1823891/EmployeeInfo/EducationDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   },
+                   {
+                      "name":"Updat EducationDetails",
+                      "id":"333fb719-bf3a-4a5e-8091-3337a1771ecb",
+                      "request":{
+                         "method":"PUT",
+                         "header":[
+                            
+                         ],
+                         "body":{
+                            "mode":"raw",
+                            "raw":"{\n    \"School\": {\n        \"percentage\": 72,\n        \"country\": \"India\",\n        \"school_Id\": 2014,\n        \"schoolBoard\": \"SSC-AndhraPradesh\",\n        \"schoolUniversityName\": \"Sri Ushodaya E/M High School\"\n    },\n    \"intermedite\": {\n        \"country\": \"India\",\n        \"interBoard\": \"IE-AP\",\n        \"collegeId\": 2016,\n        \"interUniversityName\": \"Sri Vivekananda Junior College -Dharmavaram\",\n        \"interPercentage\": 84\n    },\n    \"graduation\": {\n        \"geaduation_id\": 2020,\n        \"country\": \"India\",\n        \"graduationBoard\": \"JNTU-Anantapur\",\n        \"graduationpercentage\": 78,\n        \"graduationUniversityName\": \"St.Mark Educational Institutions - JNTU-Anantapur\"\n    }\n}",
+                            "options":{
+                               "raw":{
+                                  "language":"json"
+                               }
+                            }
+                         },
+                         "url":"http://localhost:8080/api/service/Employees/51913559/EmployeeInfo/EducationDetails"
+                      },
+                      "response":[
+                         
+                      ]
+                   }
+                ],
+                "id":"8fb19b5f-cf9c-4c3b-bdf7-cd923286f05c"
+             }
+          ],
+          "id":"9daaf7c8-4b3e-4433-8369-f3ffe1b52d4e"
+       },
+       {
+          "name":"Get All Employee",
+          "id":"93c58630-c3fe-466d-98bf-4da7fdc6adf2",
+          "request":{
+             "method":"GET",
+             "header":[
+                
+             ],
+             "url":"http://localhost:8080/api/service/Employees/"
+          },
+          "response":[
+             
+          ]
+       },
+       {
+          "name":"Get Employeeby id",
+          "id":"e1c88a65-4170-4c80-8b57-19aa2caeb62f",
+          "request":{
+             "method":"GET",
+             "header":[
+                
+             ],
+             "url":"http://localhost:8080/api/service/Employees/1823891"
+          },
+          "response":[
+             
+          ]
+       },
+       {
+          "name":"Add Employee",
+          "id":"442a8d8d-190b-460e-becc-02182dc2d338",
+          "request":{
+             "method":"POST",
+             "header":[
+                
+             ],
+             "body":{
+                "mode":"raw",
+                "raw":"{\n    \"firstName\": \"me\",\n    \"lastName\": \"lastname\",\n    \"startDate\": \"2022-01-04T09:40:10.000+00:00\",\n    \"designation\": \"GET \",\n    \"location\": \"Hydrabad\",\n    \"salary\": 25000.0,\n    \"id\":1234567\n}",
+                "options":{
+                   "raw":{
+                      "language":"json"
+                   }
+                }
+             },
+             "url":"http://localhost:8080/api/service/Employees/"
+          },
+          "response":[
+             
+          ]
+       },
+       {
+          "name":"add List of employees",
+          "id":"e4f9dcb1-1a24-4675-9577-4ed87098418c",
+          "request":{
+             "method":"POST",
+             "header":[
+                
+             ],
+             "body":{
+                "mode":"raw",
+                "raw":"[\n    {\n        \"firstName\": \"New\",\n        \"lastName\": \"New\",\n        \"startDate\": \"2022-01-01T09:40:10.000+00:00\",\n        \"designation\": \"Software Engineer \",\n        \"location\": \"Hydrabad\",\n        \"id\": 91839023,\n        \"salary\": 35000.0\n    },\n    {\n        \"firstName\": \"NSK\",\n        \"lastName\": \"Nare\",\n        \"startDate\": \"2020-01-01T09:40:10.000+00:00\",\n        \"designation\": \"Analyst\",\n        \"location\": \"Banglore\",\n        \"id\": 1823891,\n        \"salary\": 35000.0\n    },\n    {\n        \"firstName\": \"unknown User \",\n        \"lastName\": \"user\",\n        \"startDate\": \"2020-01-01T09:40:10.000+00:00\",\n        \"designation\": \"unknown designation\",\n        \"location\": \"unknown location\",\n        \"id\": 1348914,\n        \"salary\": 35000.0\n    },\n    {\n        \"firstName\": \"krishna kumar\",\n        \"lastName\": \"Nare\",\n        \"startDate\": \"2022-11-05T09:40:10.000+00:00\",\n        \"designation\": \"CEO\",\n        \"location\": \"Banglore\",\n        \"id\": 14898912,\n        \"salary\": 1550000.0\n    }\n]",
+                "options":{
+                   "raw":{
+                      "language":"json"
+                   }
+                }
+             },
+             "url":"http://localhost:8080/api/service/Employees/list/"
+          },
+          "response":[
+             
+          ]
+       },
+       {
+          "name":"update Employee",
+          "id":"4c468d47-ef8d-482d-ba0f-5654a4087604",
+          "request":{
+             "method":"PUT",
+             "header":[
+                
+             ],
+             "body":{
+                "mode":"raw",
+                "raw":"{\n        \"firstName\": \"krishna kumar\",\n        \"lastName\": \"Nare\",\n        \"startDate\": \"2022-11-05T09:40:10.000+00:00\",\n        \"id\": 51913559,\n        \"salary\": 1550000.0,\n        \"designation\": \"CEO\",\n        \"location\": \"Banglore\"\n}",
+                "options":{
+                   "raw":{
+                      "language":"json"
+                   }
+                }
+             },
+             "url":"http://localhost:8080/api/service/update/Employee/51913559"
+          },
+          "response":[
+             
+          ]
+       },
+       {
+          "name":"Delete Employee",
+          "id":"8bd7bd8f-5338-4ecb-85a2-35ebbf1dbbb8",
+          "request":{
+             "method":"DELETE",
+             "header":[
+                
+             ],
+             "url":"http://localhost:8080/api/service/Employees/1823891"
+          },
+          "response":[
+             
+          ]
+       }
+    ],
+    "id":"d117ea83-46f3-4fb9-9239-01d4db3fb378"
+ }
+ 
