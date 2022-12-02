@@ -15,7 +15,7 @@ REST APIs DEVELOPMENT
  #Attached ALL Postman Collections APIs as > EmployeeManagementSystem.json 
  
 **Prerequisites **
-Java 8
-springboot rest
-jpa
+1.Java 8
+2.SpringBoot RestAPI
+3.JPA
 
