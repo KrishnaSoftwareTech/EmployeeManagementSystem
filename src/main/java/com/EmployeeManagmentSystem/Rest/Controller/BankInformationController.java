@@ -25,7 +25,7 @@ import com.EmployeeManagmentSystem.Rest.ServiceInterface.CompanyBranchInterface;
 @RestController
 @RequestMapping("api/service/")
 public class BankInformationController {
-  String url="/Employees/{sapid}/EmployeeInfo/BankDetails";
+ // String url="/Employees/{sapid}/EmployeeInfo/BankDetails";
 	@Autowired
 	private BankDetailsInterface bankDetails;
 	
