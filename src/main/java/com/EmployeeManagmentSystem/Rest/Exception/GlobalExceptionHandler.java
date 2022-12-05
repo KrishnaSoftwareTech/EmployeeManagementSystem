@@ -43,4 +43,9 @@ public class GlobalExceptionHandler {
 	        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false),HttpStatus);
 	        return new ResponseEntity<>(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
 	    }
+	    @ExceptionHandler(FileNotSupported.class)
+	    public ResponseEntity<?> fileNotSupport(Exception ex, WebRequest request,HttpStatus HttpStatus) {
+	        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false),HttpStatus);
+	        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
+	    }
 }
