@@ -1,6 +1,7 @@
 package com.EmployeeManagmentSystem.Rest.Model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.Id;
 
 import org.springframework.lang.NonNull;
@@ -9,6 +10,7 @@ import org.springframework.lang.NonNull;
  * @author krishnakumar
  *  
  */
+@Entity
 public class AdharInformation {
 
 	@Id

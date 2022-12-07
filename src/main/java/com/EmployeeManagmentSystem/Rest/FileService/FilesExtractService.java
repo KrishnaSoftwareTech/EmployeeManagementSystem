@@ -13,7 +13,7 @@ import com.EmployeeManagmentSystem.Rest.Exception.FileNotSupported;
 
 /**
  * @author krishnakumar
- *
+ * service 1
  */
 @Service
 public class FilesExtractService implements FilesExtractServiceInterface {
@@ -32,10 +32,10 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 	private FilesUtility utilityServices;
 
 	@Override
-	public void ExtractFile(MultipartFile file) {
+	public void ExtractFile(Long sapId,MultipartFile file) {
 		if(file.getOriginalFilename().contains(".pdf")) {
 			try {
-			uploadPdfFile(file);
+			uploadPdfFile(sapId,file);
 			}catch (Exception e) {
 			throw new InternalError("unable to process request --> " +e.getMessage());
 			}
@@ -47,14 +47,14 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 		throw new FileNotSupported("File Not Support : "+ file.getOriginalFilename());
 		}}
 
-	private String uploadPdfFile(MultipartFile file) {
+	private String uploadPdfFile(Long sapId, MultipartFile file) {
 		String fileName = file.getOriginalFilename();
 		if(  fileName.equalsIgnoreCase(Adharcard) || fileName.contains(Adharcard)) {
 			// Extract it 
 			  String adharFileInformation = pdfFileExtarcter(file);
 			 // System.err.println(adharFileInformation);
 			 //store
-			  utilityServices.adharInfoAsText(adharFileInformation);
+			  utilityServices.adharInfoAsText(sapId,adharFileInformation);
 		    }
 		else if (file.getName().equalsIgnoreCase("")) {
 			

@@ -10,6 +10,6 @@ import org.springframework.web.multipart.MultipartFile;
  */
 public interface FilesExtractServiceInterface {
 
-	public void ExtractFile(MultipartFile file);
+	public void ExtractFile(Long sapId, MultipartFile file);
 
 }

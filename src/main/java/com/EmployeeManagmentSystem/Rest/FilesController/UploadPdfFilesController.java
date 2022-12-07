@@ -49,11 +49,11 @@ public class UploadPdfFilesController {
 	@Autowired
 	private FilesExtractServiceInterface filesService;
 	
-	@PostMapping("/Employee/uploadFile")
-	public ResponseEntity<Object> uploadFiles(@RequestParam("file") MultipartFile file) {
+	@PostMapping("/Employee/{sapId}/uploadFile")
+	public ResponseEntity<Object> uploadFiles(@PathVariable Long sapId,@RequestParam("file") MultipartFile file) {
 		try{
 			String originalFilename = file.getOriginalFilename();
-			filesService.ExtractFile(file);
+			filesService.ExtractFile(sapId,file);
 			String message = "Uploaded the file successfully: " + file.getOriginalFilename();
 		    return ResponseEntity.status(HttpStatus.OK).body(message);
 		}catch (Exception e) {
