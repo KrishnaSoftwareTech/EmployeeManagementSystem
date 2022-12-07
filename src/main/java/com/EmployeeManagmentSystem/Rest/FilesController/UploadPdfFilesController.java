@@ -49,8 +49,8 @@ public class UploadPdfFilesController {
 	@Autowired
 	private FilesExtractServiceInterface filesService;
 	
-	@PostMapping("/Employee/{sapid}/uploadFile")
-	public ResponseEntity<Object> uploadFiles(@PathVariable Long sapid,@RequestParam("file") MultipartFile file) {
+	@PostMapping("/Employee/uploadFile")
+	public ResponseEntity<Object> uploadFiles(@RequestParam("file") MultipartFile file) {
 		try{
 			String originalFilename = file.getOriginalFilename();
 			filesService.ExtractFile(file);

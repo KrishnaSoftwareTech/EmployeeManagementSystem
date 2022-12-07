@@ -1,16 +1,15 @@
 package com.EmployeeManagmentSystem.Rest.FileService;
 
-import java.io.File;
-
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-//Importing Apache POI classes
-//import org.apache.tika.metadata.Metadata;
-//import org.apache.tika.parser.ParseContext;
-//import org.apache.tika.parser.pdf.PDFParser;
-//import org.apache.tika.sax.BodyContentHandler;
+
+import com.EmployeeManagmentSystem.Rest.Exception.FileNotSupported;
+
 
 /**
  * @author krishnakumar
@@ -27,56 +26,66 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 	
 	private static final Logger logger=LoggerFactory.getLogger(FilesExtractService.class);
 	
-	private static final String Adharcard = "adharcard"; 
+	private static final String Adharcard = "adharcard.pdf"; 
 	
+	@Autowired
+	private FilesUtility utilityServices;
 
 	@Override
 	public void ExtractFile(MultipartFile file) {
 		if(file.getOriginalFilename().contains(".pdf")) {
+			try {
 			uploadPdfFile(file);
+			}catch (Exception e) {
+			throw new InternalError("unable to process request --> " +e.getMessage());
+			}
 		}
 		else if (file.getOriginalFilename().contains(".doc")) {
 			uploadDocumentFile(file);
 		}
 		else {
-		//	throw new duplicateFile();
-		}
-		
-	}
+		throw new FileNotSupported("File Not Support : "+ file.getOriginalFilename());
+		}}
 
-	private void uploadPdfFile(MultipartFile file) {
-		if(file.getName().equalsIgnoreCase(Adharcard)) {
-			// Extract it and store details
-			  AdharFileInformation(file);
-		}
+	private String uploadPdfFile(MultipartFile file) {
+		String fileName = file.getOriginalFilename();
+		if(  fileName.equalsIgnoreCase(Adharcard) || fileName.contains(Adharcard)) {
+			// Extract it 
+			  String adharFileInformation = pdfFileExtarcter(file);
+			 // System.err.println(adharFileInformation);
+			 //store
+			  utilityServices.adharInfoAsText(adharFileInformation);
+		    }
 		else if (file.getName().equalsIgnoreCase("")) {
 			
 		}
 		else if (file.getName().equalsIgnoreCase("")) {
 			
 		}
+		return null;
 		
 	}
 	
-	private void uploadDocumentFile(MultipartFile file) {
-		if(file.getName().equalsIgnoreCase(Adharcard)) {
-			// Extract it and store details
-			  AdharFileInformation(file);
-		}
-		else if (file.getName().equalsIgnoreCase("")) {
-			
-		}
-		else if (file.getName().equalsIgnoreCase("")) {
-			
+	//pdfExtarct
+	public String pdfFileExtarcter(final MultipartFile multipartFile) {
+	        String text;
+	        try (final PDDocument document = PDDocument.load(multipartFile.getInputStream())) {
+	            final PDFTextStripper pdfStripper = new PDFTextStripper();
+	            text = pdfStripper.getText(document);
+	        } catch (final Exception ex) {
+	            logger.error("Error parsing PDF", ex);
+	            text = "Error parsing PDF";
+	        }
+	        System.err.println(text);
+	       return text;
+	}
+		private void uploadDocumentFile(MultipartFile file) {
+			if(file.getName().equalsIgnoreCase(Adharcard)) {
+				// Extract it and store details
+			}
+			else if (file.getName().equalsIgnoreCase("")) {
+			}
+			else if (file.getName().equalsIgnoreCase("")) {
+			}
 		}
 	}
-
-	public boolean AdharFileInformation(MultipartFile file){
-
-		return true;
-		
-	}
-
-
-
-}
