@@ -39,7 +39,7 @@ public class FilesUtility {
 	public AdharInformation adharInfoAsText(Long sapId, String adharFileInformation) {
 		AdharInformation addAdharInformation = null;
 		//create file and write date to it 
-		 File myAdharFile = processesAdharFileData(adharFileInformation);
+		 File myAdharFile = processesAdharFileData(sapId,adharFileInformation);
 	    try {
 			Set<Object> adharData= getAdharInformation(myAdharFile);
 			 addAdharInformation = addAdharInformation(sapId,adharData);
@@ -49,36 +49,24 @@ public class FilesUtility {
 	    }
 
 	private AdharInformation addAdharInformation(Long sapId, Set<Object> adharData) {
-//		Long adharNumber;
-//		String phoneNumber;
 		AdharInformation adharEntity=new AdharInformation();
-		  Employee employee = employeeRepo.findById(sapId).orElseThrow( 
-  			    () -> 
-  			    new ResourceNotFoundException("Employee with " +sapId+" Not Found")
-                   );
+		Employee employee = employeeRepo.findById(sapId).orElseThrow(() -> 
+  			    new ResourceNotFoundException("Employee with " +sapId+" Not Found"));
 		String firstName = employee.getFirstName();
 		String lastName = employee.getLastName();
 		adharEntity.setSapid(sapId);
 		adharEntity.setName(firstName+" "+lastName);
-		adharEntity.setAdharNumber(null);   // Long
-		adharEntity.setPhoneNumber("");   //string
 		adharData.stream().forEach(s-> {
-			
-								if(s.toString().length() ==10) {
-								 System.out.println(s.toString().length());
-								 adharEntity.setPhoneNumber(s.toString());
-								//	adharEntity.setAdharNumber(adharNumber);
-								}
-								else {
-								//	System.out.println(s.length());
-								//	String phoneNumber=s;
-							//	adharEntity.setAdharNumber(s);
-									long adharNumber = ((Long)s).longValue();
-									System.out.println(adharNumber);
-									adharEntity.setAdharNumber(adharNumber);
-								}
-							});
-		
+			if(s.toString().length() ==10) {
+					System.out.println(s.toString().length());
+					 adharEntity.setPhoneNumber(s.toString());
+			}
+			else {
+					long adharNumber = ((Long)s).longValue();
+					System.out.println(adharNumber);
+					adharEntity.setAdharNumber(adharNumber);
+			}
+		});
 		AdharInformation save = adharRepo.save(adharEntity);
 		return save;
 	}
@@ -116,29 +104,32 @@ public class FilesUtility {
 	 Pattern p = Pattern.compile(phoneNumberRegex);
      matcher = p.matcher(strLine);
     boolean matches = matcher.matches();
-    if(matches) {
-    	System.out.println(strLine);
-    	return strLine;
-    }
-	return null;
-	}
+    if(!matches) {
+    	return null;
+    }else {
+     	System.out.println(strLine);
+    	return strLine;}
+}
 	private Long getAdharNumber(Matcher matcher, String strLine, String adharNumberRegex) {
 		Pattern p = Pattern.compile(adharNumberRegex);
         matcher = p.matcher(strLine);
        boolean matches = matcher.matches();
-       if(matches) {
+       if(!matches) {
+    		return null;
+       }
+       else {
     	   System.out.println(strLine);
     	   String replaceAll = strLine.replaceAll(" ", "");
           long AdharNumber=Long.valueOf(replaceAll);
        	return AdharNumber;
        }
-	return null;
+
 	}
-	private File processesAdharFileData(String adharFileInformation) {
+	private File processesAdharFileData(Long sapId, String adharFileInformation) {
 		boolean NewFile = false;
 		 BufferedWriter storeData = null;
 		 String path="/Users/krishnakumar/Documents/store/adapters";
-	      File myAdharFile = new File(path+"123");
+	      File myAdharFile = new File(path+sapId);
 	      //create file
 	      if(!myAdharFile.exists()) {
 	    	   try {
