@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.EmployeeManagmentSystem.Rest.Exception.FileNotSupported;
+import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
 
 
 /**
@@ -32,10 +33,11 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 	private FilesUtility utilityServices;
 
 	@Override
-	public void ExtractFile(Long sapId,MultipartFile file) {
+	public AdharInformation ExtractFile(Long sapId,MultipartFile file) {
+		AdharInformation uploadPdfFile = null;
 		if(file.getOriginalFilename().contains(".pdf")) {
 			try {
-			uploadPdfFile(sapId,file);
+			 uploadPdfFile = uploadPdfFile(sapId,file);
 			}catch (Exception e) {
 			throw new InternalError("unable to process request --> " +e.getMessage());
 			}
@@ -45,16 +47,19 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 		}
 		else {
 		throw new FileNotSupported("File Not Support : "+ file.getOriginalFilename());
-		}}
+		}
+		return  uploadPdfFile;
+		}
 
-	private String uploadPdfFile(Long sapId, MultipartFile file) {
+	private AdharInformation uploadPdfFile(Long sapId, MultipartFile file) {
+		 AdharInformation adharInfoAsText = null;
 		String fileName = file.getOriginalFilename();
 		if(  fileName.equalsIgnoreCase(Adharcard) || fileName.contains(Adharcard)) {
 			// Extract it 
 			  String adharFileInformation = pdfFileExtarcter(file);
 			 // System.err.println(adharFileInformation);
 			 //store
-			  utilityServices.adharInfoAsText(sapId,adharFileInformation);
+			   adharInfoAsText = utilityServices.adharInfoAsText(sapId,adharFileInformation);
 		    }
 		else if (file.getName().equalsIgnoreCase("")) {
 			
@@ -62,7 +67,7 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 		else if (file.getName().equalsIgnoreCase("")) {
 			
 		}
-		return null;
+		return adharInfoAsText;
 		
 	}
 	

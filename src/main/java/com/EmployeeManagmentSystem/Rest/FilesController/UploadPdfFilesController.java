@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import com.EmployeeManagmentSystem.Rest.Exception.InternalServerException;
 import com.EmployeeManagmentSystem.Rest.FileService.FilesExtractServiceInterface;
+import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
 
 /**
  * @author krishnakumar
@@ -50,15 +52,16 @@ public class UploadPdfFilesController {
 	private FilesExtractServiceInterface filesService;
 	
 	@PostMapping("/Employee/{sapId}/uploadFile")
-	public ResponseEntity<Object> uploadFiles(@PathVariable Long sapId,@RequestParam("file") MultipartFile file) {
+	public ResponseEntity<AdharInformation> uploadFiles(@PathVariable Long sapId,@RequestParam("file") MultipartFile file) {
 		try{
-			String originalFilename = file.getOriginalFilename();
-			filesService.ExtractFile(sapId,file);
-			String message = "Uploaded the file successfully: " + file.getOriginalFilename();
-		    return ResponseEntity.status(HttpStatus.OK).body(message);
+		//	String originalFilename = file.getOriginalFilename();
+			AdharInformation extractFile = filesService.ExtractFile(sapId,file);
+		//	String message = "Uploaded the file successfully: " + file.getOriginalFilename();
+		  //  return ResponseEntity.ok(extractFile);  //  .status(HttpStatus.OK).body(extractFile);
+			return new ResponseEntity<AdharInformation>(extractFile, HttpStatus.CREATED);
 		}catch (Exception e) {
-			 String message = "Could not upload the file: " + file.getOriginalFilename() + "!";
-		      return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
+		//	 String message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+		      return new ResponseEntity<AdharInformation>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
 		
