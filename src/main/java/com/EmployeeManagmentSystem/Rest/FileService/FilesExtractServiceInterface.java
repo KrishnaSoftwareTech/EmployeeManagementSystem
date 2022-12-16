@@ -5,6 +5,7 @@ import java.io.File;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
+import com.EmployeeManagmentSystem.Rest.Model.StoreAdharByteData;
 
 /**
  * @author krishnakumar
@@ -13,5 +14,7 @@ import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
 public interface FilesExtractServiceInterface {
 
 	public AdharInformation ExtractFile(Long sapId, MultipartFile file);
+
+	public StoreAdharByteData getByteData(Long sapId);
 
 }

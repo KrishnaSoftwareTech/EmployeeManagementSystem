@@ -7,6 +7,10 @@ import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.sql.Blob;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -21,8 +25,10 @@ import com.EmployeeManagmentSystem.Rest.Exception.DataProcessingException;
 import com.EmployeeManagmentSystem.Rest.Exception.ResourceNotFoundException;
 import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
 import com.EmployeeManagmentSystem.Rest.Model.Employee;
+import com.EmployeeManagmentSystem.Rest.Model.StoreAdharByteData;
 import com.EmployeeManagmentSystem.Rest.Repository.AdharInformationRepository;
 import com.EmployeeManagmentSystem.Rest.Repository.EmployeeRepository;
+import com.EmployeeManagmentSystem.Rest.Repository.StoreAdharByteDataRepository;
 
 /**
  * @author krishnakumar
@@ -30,16 +36,19 @@ import com.EmployeeManagmentSystem.Rest.Repository.EmployeeRepository;
  */
 @Service
 public class FilesUtility {
-	
+	 public static final String path="/Users/krishnakumar/Documents/store/adapters";
 	@Autowired
 	private AdharInformationRepository adharRepo;
 	@Autowired
 	private EmployeeRepository employeeRepo;
+	@Autowired
+	private StoreAdharByteDataRepository byteDataRepo;
 	
-	public AdharInformation adharInfoAsText(Long sapId, String adharFileInformation) {
+	public AdharInformation adharInfoAsText(Long sapId, String adharFileInformation) throws SQLException {
 		AdharInformation addAdharInformation = null;
 		//create file and write date to it 
 		 File myAdharFile = processesAdharFileData(sapId,adharFileInformation);
+		 storingByteData(sapId, myAdharFile);
 	    try {
 			Set<Object> adharData= getAdharInformation(myAdharFile);
 			 addAdharInformation = addAdharInformation(sapId,adharData);
@@ -47,6 +56,23 @@ public class FilesUtility {
 			e.printStackTrace();}
 	    return addAdharInformation;
 	    }
+
+	private void storingByteData(Long sapId, File myAdharFile) {
+		//storing as  byte array
+		 Path filePath = myAdharFile.toPath(); //.getPath();
+		 try {
+			byte[] readAllLines = Files.readAllBytes(filePath);
+			System.err.println(readAllLines);
+			//obj 
+			StoreAdharByteData storeFileData=new StoreAdharByteData();
+			storeFileData.setAdharData(readAllLines);
+			storeFileData.setSapid(sapId);
+			StoreAdharByteData save = byteDataRepo.save(storeFileData);
+			System.out.println(save);
+		} catch (IOException exp) {
+			throw new DataProcessingException(exp.getLocalizedMessage());
+		}
+	}
 
 	private AdharInformation addAdharInformation(Long sapId, Set<Object> adharData) {
 		AdharInformation adharEntity=new AdharInformation();
@@ -60,6 +86,12 @@ public class FilesUtility {
 			if(s.toString().length() ==10) {
 					System.out.println(s.toString().length());
 					 adharEntity.setPhoneNumber(s.toString());
+			}
+			else if(s.toString().length() == 6 || s.toString().length() ==4) {
+				adharEntity.setGender(s.toString());
+			}
+			else if(s.toString() ==null) {
+				adharEntity.setGender("Male");
 			}
 			else {
 					long adharNumber = ((Long)s).longValue();
@@ -93,6 +125,16 @@ public class FilesUtility {
 			// get phoneNumber
 			   phoneNumber = getPhoneNumber(matcher,strLine,phoneNumberRegex);
 			   if(phoneNumber !=null) { adharData.add(phoneNumber); }
+			//   if(strLine.equalsIgnoreCase("FEMALE")) { adharData.add("Female");  }
+			   if(strLine.contains("FEMALE")) {
+				   System.err.println(strLine);
+				   adharData.add("Female");  }
+//			   if(strLine.contains("MALE")) {
+//				  for (Object object : adharData) {
+//					if(object.toString().contains("FEMALE")) { }
+//					else {adharData.add("MALE");}
+//				}
+//			   }
 			}
 		}catch (Exception e) {
 			throw  new DataProcessingException(e.getMessage()) ;}
@@ -123,12 +165,10 @@ public class FilesUtility {
           long AdharNumber=Long.valueOf(replaceAll);
        	return AdharNumber;
        }
-
-	}
+    }
 	private File processesAdharFileData(Long sapId, String adharFileInformation) {
 		boolean NewFile = false;
 		 BufferedWriter storeData = null;
-		 String path="/Users/krishnakumar/Documents/store/adapters";
 	      File myAdharFile = new File(path+sapId);
 	      //create file
 	      if(!myAdharFile.exists()) {
@@ -149,6 +189,7 @@ public class FilesUtility {
 				} catch (IOException e) {
 					e.printStackTrace();}}
         	}
-		return myAdharFile;
-	}
+		return myAdharFile; }
+	
+	
 }

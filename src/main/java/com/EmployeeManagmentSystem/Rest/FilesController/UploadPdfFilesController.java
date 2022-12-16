@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitter
 import com.EmployeeManagmentSystem.Rest.Exception.InternalServerException;
 import com.EmployeeManagmentSystem.Rest.FileService.FilesExtractServiceInterface;
 import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
+import com.EmployeeManagmentSystem.Rest.Model.StoreAdharByteData;
+import com.EmployeeManagmentSystem.Rest.Repository.StoreAdharByteDataRepository;
 
 /**
  * @author krishnakumar
@@ -50,17 +53,14 @@ public class UploadPdfFilesController {
 	
 	@Autowired
 	private FilesExtractServiceInterface filesService;
+
 	
 	@PostMapping("/Employee/{sapId}/uploadFile")
 	public ResponseEntity<AdharInformation> uploadFiles(@PathVariable Long sapId,@RequestParam("file") MultipartFile file) {
 		try{
-		//	String originalFilename = file.getOriginalFilename();
 			AdharInformation extractFile = filesService.ExtractFile(sapId,file);
-		//	String message = "Uploaded the file successfully: " + file.getOriginalFilename();
-		  //  return ResponseEntity.ok(extractFile);  //  .status(HttpStatus.OK).body(extractFile);
 			return new ResponseEntity<AdharInformation>(extractFile, HttpStatus.CREATED);
 		}catch (Exception e) {
-		//	 String message = "Could not upload the file: " + file.getOriginalFilename() + "!";
 		      return new ResponseEntity<AdharInformation>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
@@ -72,5 +72,16 @@ public class UploadPdfFilesController {
         
          return null;
     }
+	
+	@GetMapping("/getAdharData/{sapId}")
+	public ResponseEntity<StoreAdharByteData> uploadFiless(@PathVariable Long sapId) {
+		try{
+	          StoreAdharByteData byteData = filesService.getByteData(sapId);
+			return new ResponseEntity<StoreAdharByteData>(byteData, HttpStatus.OK);
+		}catch (Exception e) {
+		//	 String message = "Could not upload the file: " + file.getOriginalFilename() + "!";
+		      return new ResponseEntity<StoreAdharByteData>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
      
-}
+	}

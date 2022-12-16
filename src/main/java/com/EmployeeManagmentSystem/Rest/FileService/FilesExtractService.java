@@ -1,5 +1,7 @@
 package com.EmployeeManagmentSystem.Rest.FileService;
 
+import java.sql.SQLException;
+
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.slf4j.Logger;
@@ -8,8 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.EmployeeManagmentSystem.Rest.Exception.DataProcessingException;
 import com.EmployeeManagmentSystem.Rest.Exception.FileNotSupported;
+import com.EmployeeManagmentSystem.Rest.Exception.ResourceNotFoundException;
 import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
+import com.EmployeeManagmentSystem.Rest.Model.StoreAdharByteData;
+import com.EmployeeManagmentSystem.Rest.Repository.StoreAdharByteDataRepository;
 
 
 /**
@@ -24,6 +30,9 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 //            .path("/downloadFile/")
 //            .path(fileName)
 //            .toUriString();
+	
+	@Autowired
+	private StoreAdharByteDataRepository byteDataRepo;
 	
 	private static final Logger logger=LoggerFactory.getLogger(FilesExtractService.class);
 	
@@ -52,14 +61,12 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 		}
 
 	
-	private AdharInformation uploadPdfFile(Long sapId, MultipartFile file) {
+	private AdharInformation uploadPdfFile(Long sapId, MultipartFile file) throws SQLException {
 		 AdharInformation adharInfoAsText = null;
 		String fileName = file.getOriginalFilename();
-		if(  fileName.equalsIgnoreCase(Adharcard) || fileName.contains(Adharcard)) {
+		if(fileName.equalsIgnoreCase(Adharcard) || fileName.contains(Adharcard)) {
 			// Extract it 
 			  String adharFileInformation = pdfFileExtarcter(file);
-			 // System.err.println(adharFileInformation);
-			 //store
 			   adharInfoAsText = utilityServices.adharInfoAsText(sapId,adharFileInformation);
 		    }
 		else if (file.getName().equalsIgnoreCase("")) {
@@ -93,5 +100,17 @@ public class FilesExtractService implements FilesExtractServiceInterface {
 			}
 			else if (file.getName().equalsIgnoreCase("")) {
 			}
+		}
+		@Override
+		public StoreAdharByteData getByteData(Long sapid) {
+			StoreAdharByteData byteData;
+			try {
+			 byteData = byteDataRepo.findById(sapid)
+					.orElseThrow(()->new ResourceNotFoundException("Employee With SapId NotFound " +sapid));
+			}catch (Exception e) {
+			throw new DataProcessingException(e.getMessage());
+			}
+			return byteData;
+			
 		}
 	}
