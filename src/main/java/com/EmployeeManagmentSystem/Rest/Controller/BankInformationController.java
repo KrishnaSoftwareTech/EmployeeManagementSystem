@@ -28,6 +28,7 @@ public class BankInformationController {
  // String url="/Employees/{sapid}/EmployeeInfo/BankDetails";
 	@Autowired
 	private BankDetailsInterface bankDetails;
+	@RequestMapping
 	
 	@GetMapping("/Employees/{sapid}/EmployeeInfo/BankDetails")
 	 public Optional<EmpBankDetails> getEmployeeBankDetails(@PathVariable Long sapid) {
