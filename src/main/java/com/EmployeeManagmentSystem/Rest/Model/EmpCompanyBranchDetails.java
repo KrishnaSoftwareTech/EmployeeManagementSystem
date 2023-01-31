@@ -17,6 +17,12 @@ import javax.persistence.Table;
 @Table(name="BranchDetails")
 public class EmpCompanyBranchDetails {
 
+	@Override
+	public String toString() {
+		return "EmpCompanyBranchDetails [sapid=" + sapid + ", BranchName=" + BranchName + ", BranchAddress="
+				+ BranchAddress + ", BranchHead_Id=" + BranchHead_Id + "]";
+	}
+
 	@Id
 //	@GeneratedValue
 	private Long sapid;

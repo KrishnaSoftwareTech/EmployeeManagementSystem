@@ -22,6 +22,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 public class EmpPersonalDetails {
 
+	@Override
+	public String toString() {
+		return "EmpPersonalDetails [sapId=" + sapId + ", firstName=" + firstName + ", LastName=" + LastName
+				+ ", MiddleName=" + MiddleName + ", MaritualStatus=" + MaritualStatus + ", Gender=" + Gender
+				+ ", Nationality=" + Nationality + ", CountryOfBirth=" + CountryOfBirth + ", StateOfBirth="
+				+ StateOfBirth + ", Citizen=" + Citizen + ", DateOfBirth=" + DateOfBirth + ", FamilyDetails="
+				+ FamilyDetails + "]";
+	}
 	@Id
 	private Long sapId;
 	private String firstName;

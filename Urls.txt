@@ -30,9 +30,13 @@
  	http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/EducationDetails
  	}
  4.PersonalDetails
+ {
     http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/personalDetails 
+    }
  5.BankDetails
+ {
    http://localhost:8080/api/service/Employees/{ID}/EmployeeInfo/BankDetails
+   }
  	
  	
  	

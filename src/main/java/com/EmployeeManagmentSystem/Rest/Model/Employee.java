@@ -57,6 +57,12 @@ public class Employee {
 		Designation = designation;
 	}
 	
+	@Override
+	public String toString() {
+		return "Employee [sapID=" + sapID + ", firstName=" + firstName + ", lastName=" + lastName + ", Salary=" + Salary
+				+ ", startDate=" + startDate + ", Location=" + Location + ", Designation=" + Designation + "]";
+	}
+
 	/**
 	 * @Getters 
 	 * @Setters

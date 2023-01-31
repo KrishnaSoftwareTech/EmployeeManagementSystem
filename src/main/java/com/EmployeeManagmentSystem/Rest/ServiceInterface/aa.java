@@ -9,7 +9,7 @@ import com.EmployeeManagmentSystem.Rest.Model.EmpBankDetails;
  * @author krishnakumar
  *
  */
-public class aa extends AdharInformation implements bb ,BankDetailsInterface {
+public class aa  implements bb ,BankDetailsInterface {
 
 	@Override
 	public void m1() {

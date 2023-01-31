@@ -116,6 +116,13 @@ public class Intermediate {
 	public void setInterPercentage(int interPercentage) {
 		InterPercentage = interPercentage;
 	}
+
+	@Override
+	public String toString() {
+		return "Intermediate [CollegeId=" + CollegeId + ", InterBoard=" + InterBoard + ", InterUniversityName="
+				+ InterUniversityName + ", Country=" + Country + ", InterPercentage=" + InterPercentage + ", sapID="
+				+ sapID + "]";
+	}
 	
 	
 }

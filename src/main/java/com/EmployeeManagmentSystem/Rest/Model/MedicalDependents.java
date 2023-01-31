@@ -85,6 +85,13 @@ public class MedicalDependents{
 	public void setEmpMedicalDetails(EmpMedicalDetails empMedicalDetails) {
 		this.empMedicalDetails = empMedicalDetails;
 	}
+
+//	@Override
+//	public String toString() {
+//		return "MedicalDependents [id=" + id + ", DependentName=" + DependentName + ", DependentRelation="
+//				+ DependentRelation + ", DependentAge=" + DependentAge + ", empMedicalDetails=" + empMedicalDetails
+//				+ "]";
+//	}
 	
 	
 	

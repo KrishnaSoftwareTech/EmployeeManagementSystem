@@ -1,5 +1,7 @@
 package com.EmployeeManagmentSystem.Rest.Model;
 
+import java.util.Arrays;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -43,6 +45,11 @@ public class StoreAdharByteData {
 
 	public void setAdharData(byte[] adharData) {
 		this.adharData = adharData;
+	}
+
+	@Override
+	public String toString() {
+		return "StoreAdharByteData [sapid=" + sapid + ", adharData=" + Arrays.toString(adharData) + "]";
 	}
 
 	

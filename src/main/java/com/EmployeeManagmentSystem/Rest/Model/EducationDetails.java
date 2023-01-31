@@ -19,6 +19,11 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 @Table(name="EducationDetails")
 public class EducationDetails {
 
+//	@Override
+//	public String toString() {
+//		return "EducationDetails [sapId=" + sapId + ", School=" + School + ", intermedite=" + intermedite
+//				+ ", graduation=" + graduation + "]";
+//	}
 	@Id
 	private Long sapId;
     @JsonManagedReference

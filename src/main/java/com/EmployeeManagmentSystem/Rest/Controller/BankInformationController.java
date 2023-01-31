@@ -21,6 +21,7 @@ import com.EmployeeManagmentSystem.Rest.ServiceInterface.CompanyBranchInterface;
 /**
  * @author krishnakumar
  *    Employees/{SapId}/EmployeeInfo/EducationDetails
+ *    /api/service/Employees/14898912/EmployeeInfo/BankDetails
  */
 @RestController
 @RequestMapping("api/service/")

@@ -11,6 +11,12 @@ import javax.persistence.Table;
 @Table(name="EmployeeCompensation")
 public class EmpHRCompensation {
 
+	@Override
+	public String toString() {
+		return "EmpHRCompensation [sapId=" + sapId + ", ReleaseDate=" + ReleaseDate + ", CompesationType="
+				+ CompesationType + "]";
+	}
+
 	@Id
 	private Long sapId;
 	private Date ReleaseDate;

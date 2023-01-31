@@ -18,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import com.EmployeeManagmentSystem.Rest.Exception.InternalServerException;
+import com.EmployeeManagmentSystem.Rest.Exception.ResourceNotFoundException;
 import com.EmployeeManagmentSystem.Rest.FileService.FilesExtractServiceInterface;
 import com.EmployeeManagmentSystem.Rest.Model.AdharInformation;
 import com.EmployeeManagmentSystem.Rest.Model.StoreAdharByteData;
+import com.EmployeeManagmentSystem.Rest.Repository.AdharInformationRepository;
 import com.EmployeeManagmentSystem.Rest.Repository.StoreAdharByteDataRepository;
 
 /**
@@ -53,6 +55,9 @@ public class UploadPdfFilesController {
 	
 	@Autowired
 	private FilesExtractServiceInterface filesService;
+	
+	@Autowired
+	private AdharInformationRepository adharInformation;
 
 	
 	@PostMapping("/Employee/{sapId}/uploadFile")
@@ -73,7 +78,7 @@ public class UploadPdfFilesController {
          return null;
     }
 	
-	@GetMapping("/getAdharData/{sapId}")
+	@GetMapping("/getAdharByteData/{sapId}")
 	public ResponseEntity<StoreAdharByteData> uploadFiless(@PathVariable Long sapId) {
 		try{
 	          StoreAdharByteData byteData = filesService.getByteData(sapId);
@@ -83,5 +88,10 @@ public class UploadPdfFilesController {
 		      return new ResponseEntity<StoreAdharByteData>(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-     
+	@GetMapping("/getAdharData/{sapId}")
+	public ResponseEntity<AdharInformation> getAdharInformation(@PathVariable Long sapId){
+		AdharInformation AdharData = adharInformation.findById(sapId).orElseThrow(() -> 
+		    new ResourceNotFoundException("Employee Adhar Details Not Found for " +sapId+" Not Found"));
+		 return ResponseEntity.ok().body(AdharData);
+	}
 	}

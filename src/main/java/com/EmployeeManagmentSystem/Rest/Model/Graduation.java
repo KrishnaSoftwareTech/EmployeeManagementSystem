@@ -118,6 +118,13 @@ public class Graduation {
 	public void setGraduationpercentage(int graduationpercentage) {
 		Graduationpercentage = graduationpercentage;
 	}
+
+	@Override
+	public String toString() {
+		return "Graduation [geaduation_id=" + geaduation_id + ", GraduationBoard=" + GraduationBoard
+				+ ", GraduationUniversityName=" + GraduationUniversityName + ", Country=" + Country
+				+ ", Graduationpercentage=" + Graduationpercentage + ", sapID=" + sapID + "]";
+	}
 	
 	
 }

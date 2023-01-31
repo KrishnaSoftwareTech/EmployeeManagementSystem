@@ -92,6 +92,11 @@ public class FamilyDetails{
 	public void setPersonalDetails(EmpPersonalDetails personalDetails) {
 		this.personalDetails = personalDetails;
 	}
+	@Override
+	public String toString() {
+		return "FamilyDetails [id=" + id + ", Name=" + Name + ", Occupation=" + Occupation + ", Relation=" + Relation
+				+ ", personalDetails=" + personalDetails + "]";
+	}
 	
 	
 	}

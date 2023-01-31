@@ -52,5 +52,9 @@ public class EmpMedicalDetails {
 	public void setMedicateDependents(List<MedicalDependents> medicalDependent) {
 		MedicalDependents = medicalDependent;
 	}
+	@Override
+	public String toString() {
+		return "EmpMedicalDetails [sapId=" + sapId + ", MedicalDependents=" + MedicalDependents + "]";
+	}
 	 
 }

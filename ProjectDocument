@@ -31,3 +31,22 @@ Medical details Table -
 Compensation Details Table -
 
 New EMP -  
+
+-----------------
+24th jan 2023
+Custom Response 
+ All Employee Details fetch ---> 
+ Employee[Name, Designation,Sal,Loacation,link:"http//localhost:8080/employeeDetails/..."]
+ EducationDetails[.....]
+ EmpPersonalDetails[]
+ FamilyDetails[]
+ EmpMedicalDetails[]
+ AdharInfo[]
+ --------
+ 
+ 
+ 
+ 
+
+
+

@@ -104,4 +104,10 @@ public class PrimarySchool {
 	public void setPercentage(int percentage) {
 		this.percentage = percentage;
 	}
+	@Override
+	public String toString() {
+		return "PrimarySchool [School_Id=" + School_Id + ", SchoolBoard=" + SchoolBoard + ", SchoolUniversityName="
+				+ SchoolUniversityName + ", Country=" + Country + ", percentage=" + percentage + ", sapID=" + sapID
+				+ "]";
+	}
 }
