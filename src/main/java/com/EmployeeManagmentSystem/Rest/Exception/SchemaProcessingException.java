@@ -7,18 +7,18 @@ import org.springframework.web.bind.annotation.ResponseStatus;
  * @author krishnakumar
  *
  */
-@ResponseStatus(value=HttpStatus.INTERNAL_SERVER_ERROR)
-public class InternalServerException extends RuntimeException {
-
+@ResponseStatus(value=HttpStatus.EXPECTATION_FAILED)
+public class SchemaProcessingException extends RuntimeException {
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("unused")
-	private String message;
+	private String messasge;
 
-	public InternalServerException(String message) {
-		super();
-		this.message=message;
+	public SchemaProcessingException(String message) {
+		super(message);
+		this.messasge=message;
 	}
-	public InternalServerException() {
+	public SchemaProcessingException() {
 		
 	}
+
 }
